@@ -10,7 +10,7 @@ export default function Home(){
         <>
         <Header />
         <Hero />
-        <ProdukList />
+        <ProdukList limit={3} />
         <Team />
         <Contact />
         <Footer />
