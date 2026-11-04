@@ -1,0 +1,119 @@
+.adm-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  padding: 24px 16px;
+  background: linear-gradient(180deg, #0f2a5c 0%, #1a3f8f 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.adm-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 8px 24px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.adm-brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4da3ff, #0d6efd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adm-menu-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 8px 12px;
+}
+
+.adm-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.adm-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.adm-link.active {
+  background: #fff;
+  color: #0d3b8c;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.adm-link i {
+  width: 20px;
+  text-align: center;
+}
+
+.adm-main {
+  margin-left: 250px;
+  min-height: 100vh;
+  background: #f0f4ff;
+}
+
+.adm-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: rgba(240, 244, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.adm-content {
+  padding: 8px 32px 32px;
+}
+
+.adm-content .card {
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(30, 64, 175, 0.08);
+}
+
+.adm-content .table thead th {
+  background: #f5f8ff;
+  color: #51607d;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 0;
+}
+
+.adm-content .btn-primary {
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0d6efd, #4d94ff);
+  box-shadow: 0 6px 14px rgba(13, 110, 253, 0.3);
+}
+
+.adm-content .form-control {
+  border-radius: 10px;
+}
