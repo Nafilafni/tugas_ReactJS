@@ -10,8 +10,10 @@ import AdminLayout from "./layouts/admin";
 import Dashboard from "./pages/admin";
 import GenreIndex from "./pages/admin/genres";
 import GenreCreate from "./pages/admin/genres/create";
+import GenreEdit from "./pages/admin/genres/edit";
 import AuthorIndex from "./pages/admin/authors";
 import AuthorCreate from "./pages/admin/authors/create";
+import AuthorEdit from "./pages/admin/authors/edit";
 
 function PublicWrapper() {
   return (
@@ -38,8 +40,10 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="genres" element={<GenreIndex />} />
           <Route path="genres/create" element={<GenreCreate />} />
+          <Route path="genres/:id/edit" element={<GenreEdit />} />
           <Route path="authors" element={<AuthorIndex />} />
           <Route path="authors/create" element={<AuthorCreate />} />
+          <Route path="authors/:id/edit" element={<AuthorEdit />} />
         </Route>
       </Routes>
     </BrowserRouter>

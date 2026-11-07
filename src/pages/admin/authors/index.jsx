@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import { getAuthors } from "../../../_services/authors";
+import { getAuthors, deleteAuthor } from "../../../_services/authors";
 
 export default function AuthorIndex() {
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     const ambilData = async () => {
@@ -22,6 +23,22 @@ export default function AuthorIndex() {
     ambilData();
   }, []);
 
+  const handleDelete = async (author) => {
+    if (!window.confirm(`Yakin ingin menghapus author "${author.name}"?`)) return;
+
+    setMessage(null);
+    try {
+      await deleteAuthor(author.id);
+      setAuthors(authors.filter((a) => a.id !== author.id));
+    } catch (err) {
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        setMessage("Kamu harus login sebagai admin untuk menghapus data.");
+      } else {
+        setMessage("Gagal menghapus author, coba lagi.");
+      }
+    }
+  };
+
   return (
     <>
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -30,6 +47,8 @@ export default function AuthorIndex() {
           <i className="fa-solid fa-plus me-2"></i>Tambah Author
         </Link>
       </div>
+
+      {message && <div className="alert alert-danger">{message}</div>}
 
       <div className="card shadow-sm">
         <div className="card-body">
@@ -44,6 +63,7 @@ export default function AuthorIndex() {
                   <th>Nama</th>
                   <th>Foto</th>
                   <th>Bio</th>
+                  <th style={{ width: 170 }} className="text-end">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,6 +73,20 @@ export default function AuthorIndex() {
                     <td>{a.name}</td>
                     <td>{a.photo}</td>
                     <td>{a.bio}</td>
+                    <td className="text-end">
+                      <Link
+                        to={`/admin/authors/${a.id}/edit`}
+                        className="btn btn-sm btn-outline-primary rounded-pill me-2"
+                      >
+                        <i className="fa-solid fa-pen me-1"></i>Edit
+                      </Link>
+                      <button
+                        className="btn btn-sm btn-outline-danger rounded-pill"
+                        onClick={() => handleDelete(a)}
+                      >
+                        <i className="fa-solid fa-trash me-1"></i>Hapus
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
