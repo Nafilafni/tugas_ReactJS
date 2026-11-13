@@ -14,8 +14,8 @@ export default function Login() {
         setLoading(true);
         setError(null);
         try {
-            await login(email, password);
-            navigate("/admin");
+            const data = await login(email, password);
+            navigate(data.user.role === "admin" ? "/admin" : "/user");
         } catch (err) {
             setError(err.response?.data?.message || "Login gagal, coba lagi.");
         } finally {

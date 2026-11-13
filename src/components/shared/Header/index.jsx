@@ -1,6 +1,17 @@
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
+import { getUser, isLoggedIn, logout } from '../../../_services/auth'
 
 export default function Header(){
+    const navigate = useNavigate();
+    const loggedIn = isLoggedIn();
+    const user = getUser();
+    const dashboardPath = user?.role === "admin" ? "/admin" : "/user";
+
+    const handleLogout = () => {
+        logout();
+        navigate("/login");
+    };
+
     return(
         <>
         <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -18,9 +29,25 @@ export default function Header(){
             <li><NavLink to="/contact" className="nav-link px-2 menu-link">Contact</NavLink></li>
             </ul>
 
-            <div className="col-md-3 text-end">
-            <Link to="/login" className="btn btn-outline-primary me-2">Login</Link>
-            <Link to="/register" className="btn btn-primary">Register</Link>
+            <div className="col-md-4 d-flex justify-content-center justify-content-md-end align-items-center gap-2 flex-nowrap">
+            {loggedIn ? (
+                <>
+                <Link to={dashboardPath} className="btn btn-outline-primary text-nowrap">
+                    <i className="fa-solid fa-gauge me-1"></i>Dashboard
+                </Link>
+                <Link to="/profile" className="btn btn-primary text-nowrap">
+                    <i className="fa-solid fa-user me-1"></i>Profil
+                </Link>
+                <button className="btn btn-outline-danger" onClick={handleLogout} aria-label="Logout">
+                    <i className="fa-solid fa-right-from-bracket"></i>
+                </button>
+                </>
+            ) : (
+                <>
+                <Link to="/login" className="btn btn-outline-primary">Login</Link>
+                <Link to="/register" className="btn btn-primary">Register</Link>
+                </>
+            )}
             </div>
         </header>
         </>

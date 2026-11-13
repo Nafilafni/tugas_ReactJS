@@ -6,6 +6,7 @@ const menu = [
   { to: "/admin", label: "Dashboard", icon: "fa-gauge", end: true },
   { to: "/admin/genres", label: "Genre", icon: "fa-tags" },
   { to: "/admin/authors", label: "Author", icon: "fa-user-pen" },
+  { to: "/admin/profile", label: "Profil", icon: "fa-user" },
 ];
 
 export default function AdminLayout() {
